@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.beisun.vms.mapper.Bill_grade_sendMapper">
+<select id="getBillGradeSendList"  resultType="com.beisun.vms.model.Bill_grade_send">
+  SELECT S.BILL_CLASS,C.BILL_NAME,S.BILL_START_NO,S.BILL_END_NO,C.BILL_PRICE,S.BILL_NUMBER,S.DATE_OUT,S.SEND_BRANCH_NO,S.SEND_CLERK_CODE,S.SEND_CLERK_NAME
+  FROM BILL_GRADE_SEND S
+  LEFT JOIN BILL_CLASS C
+  ON S.BILL_CLASS = C.BILL_CLASS
+  WHERE S.REV_BRANCH_NO = #{rev_branch_no,jdbcType = VARCHAR}
+  AND S.REV_CLERK_CODE = #{rev_clerk_code,jdbcType = VARCHAR}
+  AND S.SEND_LEVEL = '99' AND C.BILL_TYPE = '0103'
+</select>
+
+</mapper>
